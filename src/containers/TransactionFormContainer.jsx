@@ -9,6 +9,7 @@ import { createTransaction } from "@/api/transactionService";
 import { fetchProducts } from "@/api/productService";
 import { fetchCustomers } from "@/api/customerService";
 import TransactionForm from "@/components/transactions/TransactionForm";
+import { number } from "zod";
 
 function TransactionFormContainer({
     isDialogOpen,
@@ -29,6 +30,10 @@ function TransactionFormContainer({
             return products.data.map((product) => ({
                 id: product.id,
                 name: product.productServiceName,
+                unit: product.unit,
+                unitPrice: product.unitPrice,
+                number: product.productNumber,
+
             }));
         },
     });
@@ -42,6 +47,7 @@ function TransactionFormContainer({
             return customers.data.map((customer) => ({
                 id: customer.id,
                 name: customer.name,
+                number: customer.customerNumber,
             }));
         },
     });

@@ -4,6 +4,10 @@ export const columns = [
         header: "Product Type",
     },
     {
+        accessorKey: "productNumber",
+        header: "P/S Number",
+    },
+    {
         accessorKey: "productServiceName",
         header: "Product/Service Name",
     },

@@ -103,7 +103,7 @@ function ProductForm({
                     </div>
                     <Button
                         type="submit"
-                        className="ml-7 mb-5 w-20"
+                        className="ml-7 mb-5 w-20 bg-[#6956fc]"
                         disabled={isPending}
                     >
                         {isPending ? (

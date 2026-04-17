@@ -63,7 +63,7 @@ function ScheduleForm({
                                                               (customer) =>
                                                                   customer.id ===
                                                                   field.value
-                                                          )?.name
+                                                          )?.name + ` [${data.customers.find((customer) => customer.id === field.value)?.number}]`
                                                         : "Select customer"}
                                                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                                                 </Button>
@@ -94,7 +94,7 @@ function ScheduleForm({
                                                                     }}
                                                                 >
                                                                     {
-                                                                        customer.name
+                                                                        customer.name + ` [${customer.number}]`
                                                                     }
                                                                     <Check
                                                                         className={cn(
@@ -140,7 +140,7 @@ function ScheduleForm({
                                                               (product) =>
                                                                   product.id ===
                                                                   field.value
-                                                          )?.name
+                                                          )?.name + ` [${data.products.find((product) => product.id === field.value)?.number}]`
                                                         : "Select product"}
                                                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                                                 </Button>
@@ -171,7 +171,7 @@ function ScheduleForm({
                                                                     }}
                                                                 >
                                                                     {
-                                                                        product.name
+                                                                        product.name + ` [${product.number}]`
                                                                     }
                                                                     <Check
                                                                         className={cn(

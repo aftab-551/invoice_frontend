@@ -63,7 +63,7 @@ function TransactionForm({
                                                               (customer) =>
                                                                   customer.id ===
                                                                   field.value
-                                                          )?.name
+                                                          )?.name + ` [${data.customers.find((customer) => customer.id === field.value)?.number}]`
                                                         : "Select customer"}
                                                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                                                 </Button>
@@ -94,7 +94,7 @@ function TransactionForm({
                                                                     }}
                                                                 >
                                                                     {
-                                                                        customer.name
+                                                                        customer.name + ` [${customer.number}]`
                                                                     }
                                                                     <Check
                                                                         className={cn(
@@ -140,7 +140,7 @@ function TransactionForm({
                                                               (product) =>
                                                                   product.id ===
                                                                   field.value
-                                                          )?.name
+                                                          )?.name + ` [${data.products.find((product) => product.id === field.value)?.number}]`
                                                         : "Select product"}
                                                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                                                 </Button>
@@ -168,10 +168,18 @@ function TransactionForm({
                                                                             "productId",
                                                                             product.id
                                                                         );
+                                                                        
+                                                                        // This fills the <Input /> fields you showed me earlier
+                                                                        myForm.setValue("unit", product.unit || ""); 
+                                                                        const price = parseFloat(product.unitPrice);
+                                                                        myForm.setValue("unitPrice", isNaN(price) ? 0 : price, { 
+                                                                            shouldValidate: true, 
+                                                                            shouldDirty: true 
+                                                                        });
                                                                     }}
                                                                 >
                                                                     {
-                                                                        product.name
+                                                                        product.name + ` [${product.number}]`
                                                                     }
                                                                     <Check
                                                                         className={cn(
