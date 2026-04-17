@@ -3,6 +3,7 @@ import { z } from "zod";
 export const customerSchema = z.object({
     name: z.string().min(1).max(100),
     phoneNumber: z.string().min(1).max(20),
+    email: z.string().email("Invalid email address").or(z.literal("")),
     location: z.string().min(1).max(100),
     postCode: z.coerce
         .number({ invalid_type_error: "Postcode must be a number" })

@@ -4,6 +4,14 @@ export const columns = [
         header: "Name",
     },
     {
+        accessorKey: "customerNumber",
+        header: "Customer Number",
+    },
+    {
+        accessorKey: "email",
+        header: "Email",
+    },
+    {
         accessorKey: "phoneNumber",
         header: "Phone Number",
     },

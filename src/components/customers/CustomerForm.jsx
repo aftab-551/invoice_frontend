@@ -54,6 +54,19 @@ function CustomerForm({
                         />
                         <FormField
                             control={myForm.control}
+                            name="email"
+                            render={({ field }) => (
+                                <FormItem className="w-full lg:flex-1">
+                                    <FormLabel>Email</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={myForm.control}
                             name="location"
                             render={({ field }) => (
                                 <FormItem className="w-full lg:flex-1">

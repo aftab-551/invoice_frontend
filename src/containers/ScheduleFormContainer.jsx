@@ -10,6 +10,7 @@ import { fetchProducts } from "@/api/productService";
 import { fetchCustomers } from "@/api/customerService";
 import ScheduleForm from "@/components/schedules/ScheduleForm";
 import { setHours, setMinutes } from "date-fns";
+import { number } from "zod";
 
 function ScheduleFormContainer({
     isDialogOpen,
@@ -30,6 +31,7 @@ function ScheduleFormContainer({
             return products.data.map((product) => ({
                 id: product.id,
                 name: product.productServiceName,
+                number: product.productNumber,
             }));
         },
     });
@@ -43,6 +45,7 @@ function ScheduleFormContainer({
             return customers.data.map((customer) => ({
                 id: customer.id,
                 name: customer.name,
+                number: customer.customerNumber,
             }));
         },
     });

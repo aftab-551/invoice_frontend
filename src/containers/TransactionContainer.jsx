@@ -25,6 +25,9 @@ function TransactionContainer() {
                 ...transaction,
                 customerName: transaction.customer.name,
                 productName: transaction.product.productServiceName,
+                unit: transaction.product.unit, 
+                unitPrice: transaction.product.unitPrice,
+
                 date: transaction.date
                     ? format(new Date(transaction.date), "dd MMM yyyy")
                     : "-",
@@ -37,15 +40,17 @@ function TransactionContainer() {
     };
 
     const selectedRowObjects = useMemo(() => {
-        const selectedKeys = Object.keys(rowSelection).filter(
-            (key) => rowSelection[key]
-        );
+        // Get the keys from the checkbox selection
+        const selectedKeys = Object.keys(rowSelection).filter((key) => rowSelection[key]);
+        
         if (!transactions?.length) return [];
+
         return selectedKeys
-            .map((key) =>
-                transactions.find((row) => String(row.id) === String(key))
-            )
-            .filter(Boolean);
+            .map((key) => {
+                // Force comparison as Strings to avoid Type Mismatch
+                return transactions.find((row) => String(row.id) === String(key));
+            })
+            .filter(Boolean); // This removes any 'undefined' results
     }, [rowSelection, transactions]);
 
     const canGenerateInvoice = useMemo(() => {
