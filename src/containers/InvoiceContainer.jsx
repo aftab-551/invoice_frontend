@@ -154,10 +154,27 @@ function InvoiceContainer() {
         }
     }, []);
 
-    const handleSend = useCallback((invoice) => {
-        toast.message("Send not configured", {
-            description: `Invoice ${invoice.invoiceNumber}: when email/SMS is connected, this can set status to Sent automatically.`,
-        });
+    //send email handler
+    const handleSend = useCallback(async (invoice) => {
+        const toastId = toast.loading(`Sending invoice ${invoice.invoiceNumber}...`);
+        
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/invoices/${invoice.id}/send`, {
+                method: 'POST',
+                headers: {
+                    // 'Authorization': `Bearer ${localStorage.getItem('token')}`, // If using auth
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) throw new Error("Failed to send email");
+
+            toast.success(`Invoice ${invoice.invoiceNumber} sent!`, { id: toastId });
+            
+            // Optional: Trigger a refresh of your invoice list here to show the "SENT" status
+        } catch (error) {
+            toast.error(error.message, { id: toastId });
+        }
     }, []);
 
     const columns = useMemo(
