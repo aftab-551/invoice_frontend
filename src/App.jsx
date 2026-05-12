@@ -26,7 +26,7 @@ return (
                     )
                 }
             />
-            {/* Protected Routes */}
+            {/* Protected Routes and more secure */}
             {/* Use the ProtectedRoute component as the element for a layout route */}
             {/* All nested routes will be rendered inside DashboardLayout's <Outlet /> */}
             <Route
